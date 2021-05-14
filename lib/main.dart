@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:learnfirebase_app/Page/ShowUser.dart';
 void main()async{
   //Learn
+  //version 2.0.6
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
