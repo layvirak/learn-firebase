@@ -1,4 +1,5 @@
-import 'dart:io';
+import 'dart:convert';
+import 'dart:io' as IO;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,12 +29,18 @@ class _AddUserState extends State<AddUser> {
 
   Future getImage() async {
     final picker = ImagePicker();
-    final pickedFile = await picker.getImage(source: ImageSource.camera);
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      _userController.image = File(pickedFile.path);
+      _userController.image = IO.File(pickedFile.path);
       _userController.update();
     }
   }
+
+  // convert(IO.File imageFile) {
+  //   final bytes = IO.File(imageFile.path).readAsBytesSync();
+  //   String img64 = base64Encode(bytes);
+  //   print(img64.substring(0, 100));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +100,9 @@ class _AddUserState extends State<AddUser> {
                     _userController.imageNetwork.value = null;
                     _userController.update();
                   }),
+              // RaisedButton(onPressed: () {
+              //   convert(_userController.image);
+              // }),
               GetBuilder<UserController>(
                 init: UserController(),
                 builder: (controller) => GestureDetector(

@@ -16,7 +16,6 @@ class UserModel{
   UserModel.fromSnapshot(DocumentSnapshot snapshot):this.fromMap(snapshot.data(),reference:snapshot.reference);
   Map<String,dynamic>get toMap=>
       {
-
         'name': name,
         'age': age,
         'gender': gender,
